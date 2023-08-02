@@ -17,24 +17,13 @@ let newHour,newMinute,newSecond;
 const h2=document.createElement("h2");
 setInterval(function(){
     second++;
-    if(second<10 && second>0){
-        newSecond="0"+second;
-    }
-    else{
-        newSecond=second;
-    }
-
+    
+  
     if(second==59){
         second=0;
         minute++;
     }
-
-    if(minute<10 && minute>0){
-        newMinute="0"+minute;
-    }
-    else{
-        newMinute=minute;
-    }
+    
     if(minute==59){
         minute=0;
         hour++;
@@ -45,13 +34,12 @@ setInterval(function(){
         day++;
         if(day==7) day=0;
     }
-    if(hour<10 && hour>0){
-        newHour="0"+hour;
-    }
-    else{
-        newHour=+hour;
-    }
-
+ function formatTime(num){
+   return num < 10 ? "0" + num : num;
+ }
+  newSecond=formatTime(second);
+ newMinute=formatTime(minute);
+    newHour=formatTime(hour);
 
     h2.innerHTML=`${newHour}:${newMinute}:${newSecond}  ${days[day-1]}`;
 },1000);
